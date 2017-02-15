@@ -110,15 +110,15 @@ void agent::act() {
 	if (action == 1) {																											// pull a random arm, exploration
 		int decide = rand() % 3 + 1;
 		if (decide == 1) {																												// if random number = 1, first arm pulled
-			pull.arm_a;
+			arm_a.pull;
 			arm_pulled = 1;
 		}
 		if (decide == 2) {																												// if random number = 2, second arm pulled
-			pull.arm_b;
+			arm_b.pull;
 			arm_pulled = 2;
 		}
 		if (decide == 3) {																												// if random number = 3, third arm pulled
-			pull.arm_c;
+			arm_c.pull;
 			arm_pulled = 3;
 		}
 		else
@@ -127,25 +127,25 @@ void agent::act() {
 
 	if (action == 2) {																																	// pick greatest value
 		if ((V_t_1 > V_t_2) && (V_t_1 > V_t_3)) {																		// if arm 1 > 2 and 3
-			pull.arm_a;
+			arm_a.pull;
 			arm_pulled = 1;
 		}
 		if ((V_t_2 > V_t_1) && (V_t_2 > V_t_3)) {																		// if arm 2 > 1 and 3
-			pull.arm_b;
+			arm_b.pull;
 			arm_pulled = 2;
 		}
 		if ((V_t_3 > V_t_1) && (V_t_3 > V_t_1)) {																		// if arm 3 > 1 and 2
-			pull.arm_c;
+			arm_c.pull;
 			arm_pulled = 3;
 
 		}
 		else {																															// for first pull, if epsilon is not random (this is a hard coded action)
 			if (decide == 1) {
-				pull.arm_a;
+				arm_a.pull;
 				arm_pulled = 1;
 			}
 			if (decide == 2) {
-				pull.arm_b;
+				arm_b.pull;
 				arm_pulled = 2;
 			}
 			if (decide == 3) {
@@ -201,5 +201,10 @@ int main()
 		A.init;
 		arms.push_back(A);
 	}																																			// make n arms
+	agent learner;
+	learner.init;
+
+	
+	cout << "The program has made it to the end and dropped the One Ring into the fires of Mount Doom." << endl;
 	return 0;
 }
