@@ -42,13 +42,42 @@ double generateGaussianNoise(double mu, double sigma)																					// tak
 	return z0 * sigma + mu;
 }
 
-double average() {
-
+double average(vector<double>* pv) {
+	double sum = 0;
+	for (int i = 0; i < pv->size(); i++) {
+		sum = sum + pv->at(i);
+	}
+	return sum / pv->size();
 };
 
 double stdev() {
 
 };
+
+class arm {
+public:
+	double reward = 0;
+	double mu = 0;
+	double sigma = 0;
+	double V_t = 0;
+	double alpha = 0;
+	void init();
+	void pull();
+	void update();
+};
+
+void arm::init() {
+	double mu = rand() % 100;
+	double sigma = rand() % 5;
+};
+
+void arm::pull() {
+	reward = generateGaussianNoise(mu, sigma)
+}
+
+void arm::update() {
+	V_t = reward*alpha + V_t*(1 - alpha);
+}
 
 class agent {
 public:																																	// learner
@@ -134,39 +163,14 @@ void agent::act() {
 
 void agent::react() {
 	if (arm_pulled = 1) {
-
+		V_t_1 = reward * alpha + V_t_1 * (1 - alpha);
 	}
 	if (arm_pulled = 2) {
-
+		V_t_2 = reward * alpha + V_t_2 * (1 - alpha);
 	}
 	if (arm_pulled = 3) {
-
+		V_t_2 = reward * alpha + V_t_2 * (1 - alpha);
 	}
-}
-
-class arm {
-public:
-	double reward = 0;
-	double mu = 0;
-	double sigma = 0;
-	double V_t;
-	double alpha;
-	void init();
-	void pull();
-	void update();
-};
-
-void arm::init() {
-	double mu = rand() % 100;
-	double sigma = rand() % 5;
-};
-
-void arm::pull() {
-	reward = generateGaussianNoise(mu, sigma)
-}
-
-void arm::update() {
-	V_t = reward*alpha + V_t*(1 - alpha);
 }
 
 class MAB {
@@ -190,5 +194,12 @@ int main()
 	srand(time(NULL));
 	int test = 0;
 	cout << test << endl;
+	vector<arm> arms;
+	int n = 3;
+	for (int i = 0; i < n; i++) {
+		arm A;
+		A.init;
+		arms.push_back(A);
+	}																																			// make n arms
 	return 0;
 }
