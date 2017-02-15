@@ -189,5 +189,6 @@ int main()
 {
 	srand(time(NULL));
 	int test = 0;
+	cout << test << endl;
 	return 0;
 }
